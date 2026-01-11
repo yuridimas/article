@@ -21,6 +21,11 @@ env = environ.Env(
         str,
         "django-insecure-7phc@%ah_os)q-(0=kom094#8z-x()1p2$^&dbd5!9gpa3k+qr",
     ),
+    DB_HOST=(str, "localhost"),
+    DB_PORT=(int, 5432),
+    DB_NAME=(str, "article_db"),
+    DB_USER=(str, "article_user"),
+    DB_PASSWORD=(str, "article_password"),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,8 +93,12 @@ WSGI_APPLICATION = "article.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DB_NAME"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
     }
 }
 
